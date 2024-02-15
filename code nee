@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void them(char s[], int vt, int sl) {
+	for (int i = sl-1; i >=vt; i--) {
+		s[i + 1] = s[i];
+	}
+	s[vt] = ' ';
+}
+int demSL(string s) {
+	int dem = 0;
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i] <= 90 && s[i] >= 65) {
+			dem++;
+		}
+	}
+	return dem;
+}
+void tach(char s[]) {
+	s[0] = s[0] + 32;
+	const int sl = strlen(s) + demSL(s);
+	for (int i = 1;i<sl ; i++) {
+		if (s[i] <= 90 && s[i] >= 65) {
+			s[i] = s[i] + 32;
+			them(s, i,sl);
+		}
+		
+	}
+}
+int main() {
+	char s[30];
+	cin.getline(s, 30);
+	int sl = strlen(s) + demSL(s);
+	tach(s);
+	for (int i = 0; i < sl; i++) {
+		cout << s[i];
+	}
+}
